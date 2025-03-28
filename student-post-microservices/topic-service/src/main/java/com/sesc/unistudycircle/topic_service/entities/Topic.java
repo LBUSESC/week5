@@ -16,12 +16,21 @@ public class Topic {
 
     private String topicName;
 
-    private LocalDate topicDate;
+    private String topicDate ;
 
     @Lob
     private String topicContent;
 
     private Long studentId;
+
+    public Topic(Long topicId, String topicName, String topicDate, String topicContent, Long studentId, String studentName) {
+        this.topicId = topicId;
+        this.topicName = topicName;
+        this.topicDate = topicDate;
+        this.topicContent = topicContent;
+        this.studentId = studentId;
+        this.studentName = studentName;
+    }
 
     private String studentName;
 }

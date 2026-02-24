@@ -8,7 +8,7 @@ public class StudentServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(StudentServiceApplication.class, args);
-		System.out.println("Student Service is running...");
+		System.out.println("Student Service is running on port 8080");
 	}
 
 }

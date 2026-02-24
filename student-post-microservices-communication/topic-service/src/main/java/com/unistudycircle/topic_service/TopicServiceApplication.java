@@ -8,6 +8,6 @@ public class TopicServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TopicServiceApplication.class, args);
-		System.out.println("Topic Service is running...");
+		System.out.println("Topic Service is running on port 8081");
 	}
 }

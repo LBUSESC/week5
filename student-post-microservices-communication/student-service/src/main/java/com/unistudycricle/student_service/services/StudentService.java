@@ -5,6 +5,8 @@ import com.unistudycricle.student_service.exception.StudentNotFoundException;
 import com.unistudycricle.student_service.repositories.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
@@ -21,4 +23,28 @@ public class StudentService {
     public Student getStudentById(Long studentId){
         return studentRepository.findById(studentId).orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + studentId));
     }
+
+
+    public void deleteStudentById(long studentId) {
+        if (!studentRepository.existsById(studentId)) {
+            throw new StudentNotFoundException("Student not found with ID: " + studentId);
+        }
+        studentRepository.deleteById(studentId);
+    }
+
+
+    public Student updateStudentById(long studentId, Student updatedStudent) {
+        if (!studentRepository.existsById(studentId)) {
+            throw new StudentNotFoundException("Student not found with ID: " + studentId);
+        }
+        //Add additional validation logic if required
+        updatedStudent.setStudentId(studentId);
+        return studentRepository.save(updatedStudent);
+    }
+
+    public List<Student> getAllStudents() {
+
+        return studentRepository.findAll();
+    }
+
 }

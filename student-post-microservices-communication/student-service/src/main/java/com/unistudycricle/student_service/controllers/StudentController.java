@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/students")
 public class StudentController {
@@ -26,6 +28,26 @@ public class StudentController {
     public ResponseEntity<Student> getStudent(@PathVariable Long studentId) {
         Student student = studentService.getStudentById(studentId);
         return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Student>> getStudents() {
+        List<Student> studentList = studentService.getAllStudents();
+        return new ResponseEntity<>(studentList, HttpStatus.OK);
+    }
+
+    @PutMapping("/{studentId}")
+    public ResponseEntity<Student> updateStudentById(
+            @PathVariable long studentId,
+            @RequestBody Student updatedStudent) {
+        Student student = studentService.updateStudentById(studentId, updatedStudent);
+        return new ResponseEntity<>(student, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{studentId}")
+    public ResponseEntity<Void> deleteStudentById(@PathVariable long studentId) {
+        studentService.deleteStudentById(studentId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
